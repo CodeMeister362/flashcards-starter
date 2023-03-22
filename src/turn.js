@@ -3,8 +3,29 @@ class Turn {
 		this.guess = guess
 		this.card = card
 	}
-	returnGuess(guess) {
-		return guess
+
+	returnGuess() {
+		return this.guess
+	}
+
+	returnCard() {
+		return this.card
+	}
+
+	evaluateGuess() {
+		if(this.guess !== this.card.correctAnswer) {
+			return false
+		} else {
+			return true
+		}
+	}
+	
+	giveFeedback() {
+		if(this.evaluateGuess() === false) {
+			return 'incorrect!'
+		} else {
+			return 'correct!'
+		}
 	}
 }
 
