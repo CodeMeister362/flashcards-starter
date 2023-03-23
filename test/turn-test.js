@@ -6,10 +6,8 @@ const Card = require('../src/Card')
 describe ('Turn', () => {
 
 	beforeEach(() => {
-		card = new Card()
-		turn0 = new Turn()
-		turn1 = new Turn('guess', card)
-
+		 card = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
+		 turn = new Turn('pug', card);
 	})
 
 	it('should be a function', () => {
@@ -17,25 +15,29 @@ describe ('Turn', () => {
   });
 
 	it('should be an instance of Turn', () => {
-		expect(turn0).to.be.an.instanceOf(Turn)
+		expect(turn).to.be.an.instanceOf(Turn)
 	})
 
-	it('should have two arguments - a string and an object', () => {
-		expect(turn1.guess).to.be.a('string')
-		expect(turn1.card).to.be.an('object')
+	it('should return the users guess', () => {
+		turn.returnGuess()
+		expect(turn.guess).to.equal('pug')
 	})
 
-	it('should have a method that returns the guess', () => {
-
-		turn1.returnGuess()
-
-		expect(turn1.guess).to.be.a('string')
+	it('should return the card', () => {
+		turn.returnCard()
+		expect(turn.card).to.deep.equal({ 
+			id: 1,
+		  question: 'What is Robbie\'s favorite animal',
+		  answers: ['sea otter', 'pug', 'capybara'],
+		  correctAnswer: 'sea otter'
+		})
 	})
 
-	it('should have a method that returns the Card object', () => {
+	it('should evaluate guesses to false or true', () => {
+		expect(turn.evaluateGuess()).to.equal(false)
+	})
 
-		turn1.returnCard()
-
-		expect(turn1.card).to.be.an('object')
+	it('should say if guess was correct or incorrect', () => {
+		expect(turn.giveFeedback()).to.equal('incorrect!')
 	})
 })
