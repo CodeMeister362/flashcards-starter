@@ -45,7 +45,11 @@ describe('Round', () => {
 	})
 	
 	it('should return current card', () => {
-		expect(round.returnCurrentCard()).to.equal({ 
+
+		round.takeTurn()
+		round.takeTurn()
+
+		expect(round.returnCurrentCard()).to.deep.equal({ 
 			id: 12,
 			question: 'What is Travis\'s favorite stress reliever?',
 			answers: ['listening to music', 'watching Netflix', 'playing with bubble wrap'],
