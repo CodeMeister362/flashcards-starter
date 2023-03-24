@@ -7,6 +7,7 @@ class Round {
 		this.incorrectGuesses = []
 		this.currentTurn = null
 	}
+
 	takeTurn(guess, card) {
 		this.currentTurn = new Turn(guess, card)
 		this.turns++
@@ -18,8 +19,9 @@ class Round {
 			return this.currentTurn.giveFeedback()
 		}
 	}
+
 	returnCurrentCard() {
-		return this.round.deck[0]
+		return this.round.deck[this.turns]
 	}
 }
 
